@@ -1,0 +1,115 @@
+{
+  "name": "gas-guardian",
+  "version": "1.0.0",
+  "description": "Advanced Solidity Gas Optimization Analyzer with SolidityGPT-Powered Suggestions",
+  "main": "index.js",
+  "bin": {
+    "gas-guardian": "./bin/gas-guardian.js"
+  },
+  "files": [
+    "bin/",
+    "core/",
+    "cli/",
+    "native/",
+    "README.md",
+    "LICENSE",
+    "gas-guardian.config.json"
+  ],
+  "scripts": {
+    "start": "node bin/gas-guardian.js",
+    "build": "npm run build:native",
+    "build:native": "npx node-gyp rebuild",
+    "install": "npm run build:native",
+    "test": "jest --testPathIgnorePatterns=/test/foundry-tests/ --testPathIgnorePatterns=/test/hardhat-tests/",
+    "test:unit": "jest test/unit",
+    "test:integration": "jest test/integration",
+    "test:foundry": "jest test/foundry-tests --testTimeout=60000 --testMatch='**/test/foundry-tests/**/*.test.js'",
+    "test:hardhat": "jest test/hardhat-tests --testTimeout=60000 --testMatch='**/test/hardhat-tests/**/*.test.js'",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "test:frameworks": "npm run test:foundry && npm run test:hardhat"
+  },
+  "keywords": [
+    "solidity",
+    "gas-optimization",
+    "ethereum",
+    "smart-contracts",
+    "foundry",
+    "hardhat",
+    "solidityGPT",
+    "analysis",
+    "blockchain",
+    "defi",
+    "web3",
+    "optimization",
+    "static-analysis",
+    "gas-reporter",
+    "gas-analysis"
+  ],
+  "author": {
+    "name": "Arnav Gupta",
+    "email": "techyarnav@gmail.com",
+    "url": "https://github.com/techyarnav"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techyarnav/GasGuardian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/techyarnav/GasGuardian/issues"
+  },
+  "homepage": "https://github.com/techyarnav/GasGuardian#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.6.0",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.1.1",
+    "log-symbols": "^4.1.0",
+    "marked": "^9.1.6",
+    "node-addon-api": "^7.1.1",
+    "ora": "^5.4.1",
+    "table": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "mock-fs": "^5.2.0",
+    "node-gyp": "^10.3.1",
+    "prettier": "^3.1.0",
+    "supertest": "^6.3.3",
+    "tmp": "^0.2.1"
+  },
+  "peerDependencies": {
+    "foundry": "*",
+    "hardhat": "*"
+  },
+  "peerDependenciesMeta": {
+    "foundry": {
+      "optional": true
+    },
+    "hardhat": {
+      "optional": true
+    }
+  },
+  "bundledDependencies": [],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bundleDependencies": []
+}

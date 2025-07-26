@@ -1,0 +1,110 @@
+{
+  "version": "1.0.0",
+  "defaultSettings": {
+    "framework": "foundry",
+    "output": "table",
+    "llm": {
+      "enabled": false,
+      "model": "solidityGPT",
+      "maxTokens": 512,
+      "temperature": 0.1,
+      "timeout": 30000
+    },
+    "analysis": {
+      "includePatterns": true,
+      "calculateComplexity": true,
+      "detectGasPatterns": true,
+      "showPotentialSavings": true
+    },
+    "parser": {
+      "useNative": true,
+      "timeout": 10000,
+      "maxFileSize": "10MB"
+    }
+  },
+  "rules": {
+    "gasOptimization": {
+      "detectLoops": true,
+      "detectStorageOperations": true,
+      "detectExternalCalls": true,
+      "detectStringConcatenation": true,
+      "detectArrayOperations": true,
+      "detectMappingOperations": true
+    },
+    "patterns": {
+      "requireToCustomError": {
+        "enabled": true,
+        "impact": "medium",
+        "confidence": 0.9
+      },
+      "publicToExternal": {
+        "enabled": true,
+        "impact": "low",
+        "confidence": 0.8
+      },
+      "cacheArrayLength": {
+        "enabled": true,
+        "impact": "medium",
+        "confidence": 0.9
+      },
+      "uncheckedArithmetic": {
+        "enabled": true,
+        "impact": "high",
+        "confidence": 0.7
+      },
+      "packedStructs": {
+        "enabled": true,
+        "impact": "high",
+        "confidence": 0.6
+      }
+    }
+  },
+  "frameworks": {
+    "foundry": {
+      "configFile": "foundry.toml",
+      "testDirectory": "test",
+      "sourceDirectory": "src",
+      "snapshotFile": ".gas-snapshot",
+      "commands": {
+        "build": "forge build",
+        "test": "forge test --gas-report",
+        "snapshot": "forge snapshot"
+      }
+    },
+    "hardhat": {
+      "configFile": "hardhat.config.js",
+      "testDirectory": "test",
+      "sourceDirectory": "contracts",
+      "gasReportFile": "gasReporterOutput.json",
+      "commands": {
+        "build": "npx hardhat compile",
+        "test": "REPORT_GAS=true npx hardhat test"
+      }
+    }
+  },
+  "output": {
+    "formats": ["table", "markdown", "json"],
+    "colors": true,
+    "verbose": false,
+    "showTimestamp": true,
+    "includeMetadata": true
+  },
+  "cache": {
+    "enabled": true,
+    "directory": ".gas-guardian-cache",
+    "ttl": 3600000,
+    "maxSize": "100MB"
+  },
+  "models": {
+    "solidityGPT": {
+      "type": "huggingface",
+      "enabled": true,
+      "config": {
+        "modelName": "ethereum/solidity-gpt",
+        "maxTokens": 512,
+        "temperature": 0.1,
+        "downloadPath": "./models"
+      }
+    }
+  }
+}
